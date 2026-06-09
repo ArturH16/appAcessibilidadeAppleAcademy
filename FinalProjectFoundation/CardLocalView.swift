@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CardLocalView: View {
     var local: Local
-    var bairro: Bairro
     
     var body: some View {
         HStack{
@@ -20,8 +19,8 @@ struct CardLocalView: View {
             
             
             VStack{
-                Text(local.name)
-                Text(bairro.name)
+                Text(local.nomeLocal).font(.system(size: 20))
+                Text(local.bairroLocal).font(.system(size: 18))
                 
                }
                
@@ -40,6 +39,15 @@ struct CardLocalView: View {
 
 
 
-#Preview {
- CardLocalView()
-}
+//#Preview {
+    //CardLocalView(local: Local(
+      //  nomeLocal: "Praça Central",
+  //      imagemPrincipal: Data(), // Dados vazios só pro preview funcionar
+    //    recursos: "Wi-Fi, Bancos",
+        //isFavorite: 0,
+ //       descricaoLocal: "Uma praça bonita",
+   //     bairroLocal: "Centro",
+//     horarioFuncionamento: "08:00 - 22:00",
+     //   diasFuncionamento: "Segunda a Sexta"
+    //))
+//}
