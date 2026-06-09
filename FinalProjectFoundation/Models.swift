@@ -25,14 +25,14 @@ class Projeto: Identifiable {
     
     init(id: Int = Int.random(in: 1...10000000),
          nomeProjeto: String,
-         recursos: [String] = [],
-         dataInicio: String = "",
+         recursos: [String] ,
+         dataInicio: String ,
          dataFim: String? = "",
          imagemPrincipalProjeto: Data,
          distancia : Int? = nil,
          colaboradores: String? = "",
-         diasFuncionamento: String = "",
-         horarioFuncionamento: [String] = [],
+         diasFuncionamento: String ,
+         horarioFuncionamento: [String],
          endereco: EnderecoProjeto? = nil
     ) {
         self.id = id

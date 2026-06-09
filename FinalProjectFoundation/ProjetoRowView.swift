@@ -27,9 +27,18 @@ struct ProjetoRow: View {
                         .font(.system(size: 14))
                         .foregroundColor(.secondary)
                 }
+                
+                
+                Text("Aberto")
+                    .font(.system(size: 10,weight: .bold))
+                    .padding(.horizontal,10)
+                    .padding(.vertical,4)
+                    .foregroundColor(Color.green)
+                    .background(Color.green.opacity(0.12))
+                    .clipShape(Capsule())
             }
             
-            Spacer()
+            Spacer(minLength: 2)
             
             Image(systemName: "chevron.right")
                 .font(.system(size: 14,weight: .semibold))
@@ -44,7 +53,7 @@ struct ProjetoRow: View {
 }
 
 
-#Preview {
+/*#Preview {
     let enderecoTeste = EnderecoProjeto(
         id: 1,
         logradouro: "Av Beira Mar",
@@ -62,3 +71,4 @@ struct ProjetoRow: View {
         .padding()
         .background(Color(.systemGroupedBackground))
 }
+*/
