@@ -11,15 +11,29 @@ struct ProjetoRow: View {
     
     var body: some View {
         HStack {
-            Image(uiImage: UIImage(data: projeto.imagemPrincipalProjeto)!)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 110,height: 75)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+            if let uiImage = UIImage(data: projeto.imagemPrincipalProjeto) {
+                // Se der certo, mostramos a imagem do projeto
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 110, height: 75)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                
+            } else {
+                // Se der errado (else), mostramos um ícone padrão do sistema
+                Image(systemName: "photo.on.rectangle.angled")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 110, height: 75)
+                    .foregroundColor(.gray.opacity(0.6))
+                    .padding(10) // Um recuo para o ícone não encostar nas bordas
+                    .background(Color.gray.opacity(0.1)) // Um fundo cinza clarinho
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
             
-            VStack(alignment: .leading,spacing: 4) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(projeto.nomeProjeto)
-                    .font(.system(size: 16,weight: .bold))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.primary)
                 
                 if let bairro = projeto.endereco?.bairro {
@@ -28,11 +42,10 @@ struct ProjetoRow: View {
                         .foregroundColor(.secondary)
                 }
                 
-                
                 Text("Aberto")
-                    .font(.system(size: 10,weight: .bold))
-                    .padding(.horizontal,10)
-                    .padding(.vertical,4)
+                    .font(.system(size: 10, weight: .bold))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
                     .foregroundColor(Color.green)
                     .background(Color.green.opacity(0.12))
                     .clipShape(Capsule())
@@ -41,17 +54,15 @@ struct ProjetoRow: View {
             Spacer(minLength: 2)
             
             Image(systemName: "chevron.right")
-                .font(.system(size: 14,weight: .semibold))
+                .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.gray.opacity(0.4))
         }
-        .frame(maxWidth: .infinity,alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(15)
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        
     }
 }
-
 
 /*#Preview {
     let enderecoTeste = EnderecoProjeto(
