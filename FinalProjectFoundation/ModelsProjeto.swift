@@ -6,9 +6,9 @@
 //
 import Foundation
 import SwiftData
-import SwiftUI
+/*import SwiftDataSQLite
 
-
+@SQLiteTable("projetos")*/
 @Model
 class Projeto: Identifiable {
     var id: Int
@@ -49,7 +49,6 @@ class Projeto: Identifiable {
     }
 
 }
-
 
 @Model
 class EnderecoProjeto: Identifiable {

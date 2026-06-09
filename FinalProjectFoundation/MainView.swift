@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     // Criamos um estado (State) para controlar qual aba está selecionada atualmente.
     // 0 = Locais, 1 = Projetos, 2 = Favoritos
-    @State private var abaSelecionada = 0 // Começa na aba "Projetos" (1) como no seu protótipo
+    @State private var abaSelecionada = 1 // Começa na aba "Projetos" (1) como no seu protótipo
     
     var body: some View {
         TabView(selection: $abaSelecionada) {
