@@ -6,9 +6,9 @@
 //
 import Foundation
 import SwiftData
-//import SwiftDataSQLite
+import SwiftDataSQLite
 
-//@SQLiteTable("projetos")
+@SQLiteTable("projetos")
 @Model
 class Projeto: Identifiable {
     var id: Int
@@ -21,19 +21,21 @@ class Projeto: Identifiable {
     var colaboradores: String?
     var diasFuncionamento: String
     var horarioFuncionamento: [String]
-    @Relationship var endereco: EnderecoProjeto?
+    @SQLiteColumn("idEndereco")
+    @Relationship var endereco: EnderecoProjeto
     
-    init(id: Int = Int.random(in: 1...10000000),
-         nomeProjeto: String,
-         recursos: [String] ,
-         dataInicio: String ,
-         dataFim: String? = "",
-         imagemPrincipalProjeto: Data,
-         distancia : Int? = nil,
-         colaboradores: String? = "",
-         diasFuncionamento: String ,
-         horarioFuncionamento: [String],
-         endereco: EnderecoProjeto? = nil
+    init(
+        id: Int,
+        nomeProjeto: String,
+        recursos: [String] = [],
+        dataInicio: String = "",
+        dataFim: String? = nil,
+        imagemPrincipalProjeto: Data,
+        distancia: Int? = nil,
+        colaboradores: String? = nil,
+        diasFuncionamento: String = "",
+        horarioFuncionamento: [String] = [],
+        endereco: EnderecoProjeto
     ) {
         self.id = id
         self.nomeProjeto = nomeProjeto
@@ -49,9 +51,9 @@ class Projeto: Identifiable {
     }
 
 }
-//@SQLiteTable("enderecosProjetos")
+@SQLiteTable("enderecosProjetos")
 @Model
-class EnderecoProjeto: Identifiable {
+class EnderecoProjeto {
     var id: Int
     var logradouro: String
     var numero: String?
@@ -60,14 +62,20 @@ class EnderecoProjeto: Identifiable {
     var bairro: String
     var estado: String?
     var cep: String?
-    @Relationship(inverse: \Projeto.endereco) var projeto: Projeto?
+//    @Relationship var projeto: Projeto?
     
     
-    init(id: Int, logradouro: String, numero: String? = nil,
-         complemento: String? = nil,
-         cidade: String? = "Fortaleza",
-         bairro: String,
-         estado: String? = "CE", cep: String? = nil, projeto: Projeto? = nil) {
+    init(
+        id: Int,
+        logradouro: String,
+        numero: String? = nil,
+        complemento: String? = nil,
+        cidade: String? = "Fortaleza",
+        bairro: String,
+        estado: String? = "CE",
+        cep: String? = nil,
+//        projeto: Projeto? = nil
+    ) {
         self.id = id
         self.logradouro = logradouro
         self.numero = numero
@@ -76,7 +84,7 @@ class EnderecoProjeto: Identifiable {
         self.bairro = bairro
         self.estado = estado
         self.cep = cep
-        self.projeto = projeto
+//        self.projeto = projeto
     }
 }
 

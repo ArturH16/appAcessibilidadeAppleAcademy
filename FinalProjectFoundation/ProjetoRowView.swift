@@ -36,11 +36,11 @@ struct ProjetoRow: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.primary)
                 
-                if let bairro = projeto.endereco?.bairro {
-                    Text(bairro)
-                        .font(.system(size: 14))
-                        .foregroundColor(.secondary)
-                }
+//                if let bairro = projeto.endereco?.bairro {
+//                    Text(bairro)
+//                        .font(.system(size: 14))
+//                        .foregroundColor(.secondary)
+//                }
                 
                 Text("Aberto")
                     .font(.system(size: 10, weight: .bold))
@@ -64,7 +64,7 @@ struct ProjetoRow: View {
     }
 }
 
-/*#Preview {
+#Preview {
     let enderecoTeste = EnderecoProjeto(
         id: 1,
         logradouro: "Av Beira Mar",
@@ -73,13 +73,15 @@ struct ProjetoRow: View {
     
     let imagemData = UIImage(resource: .praiaAcessivel).pngData()!
     
-    let projetoTeste = Projeto(id: 1,
-    nomeProjeto: "Praia Acessível",
-    imagemPrincipalProjeto: imagemData,
-    endereco: enderecoTeste)
-    
-    ProjetoRow(projeto: projetoTeste)
-        .padding()
-        .background(Color(.systemGroupedBackground))
+//    let projetoTeste = Projeto(
+//        id: 1,
+//        nomeProjeto: "Praia Acessível",
+//        imagemPrincipalProjeto: imagemData, endereco: <#EnderecoProjeto#>,
+////        endereco: enderecoTeste
+//    )
+//    
+//    ProjetoRow(projeto: projetoTeste)
+//        .padding()
+//        .background(Color(.systemGroupedBackground))
 }
-*/
+
