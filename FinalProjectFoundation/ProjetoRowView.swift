@@ -65,23 +65,23 @@ struct ProjetoRow: View {
 }
 
 #Preview {
-//    let enderecoTeste = EnderecoProjeto(
-//        id: 1,
-//        logradouro: "Av Beira Mar",
-//        bairro: "Praia de Iracema"
-//    )
-//    
-//    let imagemData = UIImage(resource: .praiaAcessivel).pngData()!
-//    
-//    let projetoTeste = Projeto(
-//        id: 1,
-//        nomeProjeto: "Praia Acessível",
-//        imagemPrincipalProjeto: imagemData, endereco: <#EnderecoProjeto#>,
-////        endereco: enderecoTeste
-//    )
-//    
-//    ProjetoRow(projeto: projetoTeste)
-//        .padding()
-//        .background(Color(.systemGroupedBackground))
+    let enderecoTeste = EnderecoProjeto(
+        id: 1,
+        logradouro: "Av Beira Mar",
+        bairro: "Praia de Iracema"
+    )
+    
+    let imagemData = UIImage(resource: .praiaAcessivel).pngData()!
+    
+    let projetoTeste = Projeto(
+        id: 1,
+        nomeProjeto: "Praia Acessível",
+        imagemPrincipalProjeto: imagemData,
+        endereco: enderecoTeste
+    )
+    
+    ProjetoRow(projeto: projetoTeste)
+        .padding()
+        .background(Color(.systemGroupedBackground))
 }
 
