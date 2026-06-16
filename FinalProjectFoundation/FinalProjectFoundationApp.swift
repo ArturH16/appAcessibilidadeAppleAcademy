@@ -14,7 +14,7 @@ import SwiftDataSQLite
 struct FinalProjectFoundationApp: App {
     var body: some Scene {
         WindowGroup {
-            ProjetoListView()
+            MainView()
                 .modelContainer(
                     // ✅
                     for: [
