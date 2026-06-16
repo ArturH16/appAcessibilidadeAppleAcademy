@@ -64,7 +64,7 @@ struct ProjetoDetailView: View {
                               .font(.headline)
                               .bold()
                           
-                          Text(projeto.informacoesGerais)
+                          Text(projeto.informacoesGerais ?? "OI")
                               .font(.body)
                               .foregroundColor(.primary)
                               .lineSpacing(4)
@@ -76,7 +76,7 @@ struct ProjetoDetailView: View {
                               .font(.headline)
                               .bold()
                           
-                          Text(projeto.recursos)
+                          Text(projeto.recursos ?? "OI")
                               .font(.body)
                               .foregroundColor(.primary)
                       }

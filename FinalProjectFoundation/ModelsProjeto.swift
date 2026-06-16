@@ -13,7 +13,7 @@ import SwiftDataSQLite
 class Projeto: Identifiable {
     var id: Int
     var nomeProjeto: String
-    var recursos: String
+    var recursos: String?
     var dataInicio: String
     var dataFim: String?
     var imagemPrincipalProjeto: Data
@@ -21,14 +21,14 @@ class Projeto: Identifiable {
     var colaboradores: String?
     var diasFuncionamento: String
     var horarioFuncionamento: String
-    var informacoesGerais: String
+    var informacoesGerais: String?
     @SQLiteColumn("idEndereco")
     @Relationship var endereco: EnderecoProjeto
     
     init(
         id: Int,
         nomeProjeto: String,
-        recursos: String,
+        recursos: String? = nil,
         dataInicio: String = "",
         dataFim: String? = nil,
         imagemPrincipalProjeto: Data,
@@ -36,7 +36,7 @@ class Projeto: Identifiable {
         colaboradores: String? = nil,
         diasFuncionamento: String = "",
         horarioFuncionamento: String = "",
-        informacoesGerais: String,
+        informacoesGerais: String? = nil,
         endereco: EnderecoProjeto
     ) {
         self.id = id
