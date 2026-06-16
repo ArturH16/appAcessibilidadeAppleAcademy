@@ -51,7 +51,7 @@ struct LocalDetailsView: View {
                       }
                       
                       // Endereço
-                      Text(local.endereco!.logradouro)
+                      Text(local.endereco.logradouro)
                           .font(.caption)
                           .foregroundColor(.secondary)
                       
@@ -117,8 +117,8 @@ struct LocalDetailsView: View {
             descricaoLocal: "Iniciativa de inclusão social e esportiva que promove a prática de esportes aquáticos adaptados (como canoagem e stand-up paddle) para pessoas com deficiência e seus familiares. Ele utiliza o mar e a Lagoa do Colosso como ferramentas de reabilitação, lazer e autonomia.",
             bairroLocal: "Strin",
             horarioFuncionamento: " - 07:00 : 09:00",
-            diasFuncionamento: "Qua a Sab"
-            
+            diasFuncionamento: "Qua a Sab",
+            endereco: enderecoFalso
            )
       LocalDetailsView(local: localFalso)
   }

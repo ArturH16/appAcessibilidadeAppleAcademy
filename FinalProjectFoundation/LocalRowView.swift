@@ -87,7 +87,8 @@ struct LocalRowView: View {
         descricaoLocal: "ascbhabh",
         bairroLocal: "gsdhbv",
         horarioFuncionamento: "nhcgsy",
-        diasFuncionamento: "hdbhb"
+        diasFuncionamento: "hdbhb",
+        endereco: enderecoTeste
     )
     
     LocalRowView(local: localTeste)

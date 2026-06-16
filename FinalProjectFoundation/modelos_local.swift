@@ -21,7 +21,7 @@ class Local: Identifiable {
     var bairroLocal: String
     var horarioFuncionamento: String
     var diasFuncionamento: String
-    @Relationship var endereco: Endereco_local?
+    @Relationship var endereco: Endereco_local
     
     init(
         id: Int? = nil,
@@ -31,7 +31,8 @@ class Local: Identifiable {
         descricaoLocal: String,
         bairroLocal: String,
         horarioFuncionamento: String,
-        diasFuncionamento: String
+        diasFuncionamento: String,
+        endereco: Endereco_local
         
         
     ){
@@ -43,6 +44,7 @@ class Local: Identifiable {
         self.horarioFuncionamento = horarioFuncionamento
         self.diasFuncionamento = diasFuncionamento
         self.imagemPrincipal = imagemPrincipal
+        self.endereco = endereco
         
     }
 }
