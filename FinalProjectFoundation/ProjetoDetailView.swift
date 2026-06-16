@@ -15,11 +15,12 @@ struct ProjetoDetailView: View {
           ScrollView {
               VStack(alignment: .leading, spacing: 16) {
                   ZStack(alignment: .topLeading) {
-                      Image(.praiaAcessivel)
+                      Image(uiImage: UIImage(data: projeto.imagemPrincipalProjeto)!)
                           .resizable()
                           .scaledToFill()
                           .frame(height: 250)
                           .clipped()
+
                       
                       // Botão Voltar Customizado
                       Button(action: { dismiss() }) {
@@ -75,7 +76,7 @@ struct ProjetoDetailView: View {
                               .font(.headline)
                               .bold()
                           
-                          Text("Atendimento familiar, diagnóstico e acompanhamento para TEA e síndrome de Down.")
+                          Text(projeto.recursos)
                               .font(.body)
                               .foregroundColor(.primary)
                       }
@@ -100,20 +101,21 @@ struct ProjetoDetailView: View {
   }
 
   #Preview {
+      let imagemData = UIImage(resource: .projetoRemar).pngData()!
       let enderecoFalso = EnderecoProjeto( id: 1,
                         logradouro: "Rua Plácido de Castro, 35 A")
       let projetoFalso = Projeto(
             id: 1,
-            nomeProjeto: "Espaço Girassol",
+            nomeProjeto: "Projeto Remar",
             recursos: "Atendimento familiar, diagnóstico e acompanhamento para TEA e síndrome de Down.",
-            dataInicio: "2026",
+            dataInicio: "2013",
             dataFim: nil,
-            imagemPrincipalProjeto: Data(), // Passa um dado binário vazio para testes
+            imagemPrincipalProjeto: imagemData,
             distancia: 5,
             colaboradores: nil,
-            diasFuncionamento: "Seg a Sab",
-            horarioFuncionamento: " - 08:00 : 20:00",
-            informacoesGerais: "O Espaço Girassol é uma rede municipal de Fortaleza dedicada ao acolhimento, diagnóstico e terapias para crianças e adolescentes (3 a 17 anos) com neurodivergências e transtornos do neurodesenvolvimento, como o Transtorno do Espectro Autista (TEA).",
+            diasFuncionamento: "Qua a Sab",
+            horarioFuncionamento: " - 07:00 : 09:00",
+            informacoesGerais: "Iniciativa de inclusão social e esportiva que promove a prática de esportes aquáticos adaptados (como canoagem e stand-up paddle) para pessoas com deficiência e seus familiares. Ele utiliza o mar e a Lagoa do Colosso como ferramentas de reabilitação, lazer e autonomia.",
             endereco: enderecoFalso
            )
       ProjetoDetailView(projeto: projetoFalso)
