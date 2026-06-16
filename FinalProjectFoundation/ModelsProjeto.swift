@@ -8,7 +8,7 @@ import Foundation
 import SwiftData
 import SwiftDataSQLite
 
-//@SQLiteTable("projetos")
+@SQLiteTable("projetos")
 @Model
 class Projeto: Identifiable {
     @SQLiteColumn("idProjetos")
@@ -55,7 +55,7 @@ class Projeto: Identifiable {
     }
 
 }
-//@SQLiteTable("enderecosProjetos")
+@SQLiteTable("enderecosProjetos")
 @Model
 class EnderecoProjeto {
     @SQLiteColumn("idEnderecosProjetos")
@@ -67,7 +67,7 @@ class EnderecoProjeto {
     var bairro: String?
     var estado: String?
     var cep: String?
-    @Relationship var projeto: Projeto?
+//    @Relationship(inverse: \Projeto.endereco) var projeto: Projeto?
     
     
     init(
@@ -79,7 +79,7 @@ class EnderecoProjeto {
         bairro: String? = nil,
         estado: String? = "CE",
         cep: String? = nil,
-        projeto: Projeto? = nil
+//        projeto: Projeto? = nil
     ) {
         self.id = id
         self.logradouro = logradouro
@@ -89,7 +89,7 @@ class EnderecoProjeto {
         self.bairro = bairro
         self.estado = estado
         self.cep = cep
-        self.projeto = projeto
+//        self.projeto = projeto
     }
 }
 

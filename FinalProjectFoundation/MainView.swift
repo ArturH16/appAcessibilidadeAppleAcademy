@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import SwiftData
+import SwiftDataSQLite
+
 
 struct MainView: View {
     @State private var abaSelecionada = 1
@@ -15,7 +18,6 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             
-            // 1. AS TELAS DE TRÁS
             TabView(selection: $abaSelecionada) {
                 LocaisListView()
                     .tag(0)
@@ -29,7 +31,7 @@ struct MainView: View {
                 }
             }
             
-            // 2. A SUA BARRA FLUTUANTE CUSTOMIZADA
+            // BARRA FLUTUANTE CUSTOMIZADA
             HStack(spacing: 0) {
                 if !pesquisaExpandida {
                     // Estado Normal: Mostra os 3 botões lado a lado uniformemente
@@ -123,27 +125,6 @@ struct MainView: View {
     }
 }
 
-// MARK: - Views de Suporte Modificadas (Forçam a TabBar nativa a sumir)
-
-struct LocaisPlaceholderView: View {
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                Image(systemName: "diamond.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(.blue)
-                Text("Tela de Locais")
-                    .font(.title2)
-                    .bold()
-                Text("Aqui ficarão os locais fixos.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            .navigationTitle("Locais")
-            .toolbar(.hidden, for: .tabBar) // <-- Remove a barra preta nesta tela
-        }
-    }
-}
 
 
 // Nova view para exibir os resultados da busca quando expandido
@@ -169,5 +150,15 @@ struct ResultadosPesquisaView: View {
 
 
 #Preview {
-    MainView()
+    MainView().modelContainer(
+            // ✅
+            for: [
+                EnderecoProjeto.self,
+                Projeto.self,
+                Endereco_local.self,
+                Local.self
+            ],
+            inMemory: true,
+            sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
+        )
 }
