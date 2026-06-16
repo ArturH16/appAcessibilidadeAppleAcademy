@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     // Criamos um estado (State) para controlar qual aba está selecionada atualmente.
-    // 0 = Locais, 1 = Projetos, 2 = Favoritos
+    // 0 = Locais, 1 = Projetos
     @State private var abaSelecionada = 1 // Começa na aba "Projetos" (1) como no seu protótipo
     
     var body: some View {
@@ -29,13 +29,18 @@ struct MainView: View {
                 }
                 .tag(1)
             
-            // ABA 3: Favoritos
-            FavoritosPlaceholderView()
+            //3: Pesquisa
+            PesquisaView()
                 .tabItem {
-                    Label("Favoritos", systemImage: "triangle.fill")
+                    Label("Pesquisa",systemImage: "magnifyingglass")
                 }
                 .tag(2)
-        }
+            
+                
+            
+              }
+        
+        
         // Aplica uma cor de destaque azul para a aba selecionada
         .accentColor(.blue)
     }
@@ -65,26 +70,12 @@ struct LocaisPlaceholderView: View {
     }
 }
 
-struct FavoritosPlaceholderView: View {
+struct PesquisaView: View {
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                Image(systemName: "triangle.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(.blue)
-                Text("Seus Favoritos")
-                    .font(.title2)
-                    .bold()
-                Text("Locais e projetos favoritados aparecerão aqui.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-            }
-            .navigationTitle("Favoritos")
-        }
+        Text("comece a pesquisar")
     }
 }
+
 
 #Preview {
     MainView()

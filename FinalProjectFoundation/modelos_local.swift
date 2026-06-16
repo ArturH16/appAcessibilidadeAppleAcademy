@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import SwiftDataSQLite
 
-@SQLiteTable("locais")
+//@SQLiteTable("locais")
 @Model
 class Local: Identifiable {
     var idLocal: Int? = nil
@@ -50,7 +50,7 @@ class Local: Identifiable {
 }
 
 
-@SQLiteTable("enderecosLocais")
+//@SQLiteTable("enderecosLocais")
 @Model
 class Endereco_local: Identifiable {
     var idEnderecos: Int?
