@@ -51,7 +51,7 @@ class Projeto: Identifiable {
     }
 
 }
-@SQLiteTable("enderecosProjetos")
+//@SQLiteTable("enderecosProjetos")
 @Model
 class EnderecoProjeto {
     var id: Int
@@ -59,7 +59,7 @@ class EnderecoProjeto {
     var numero: String?
     var complemento: String?
     var cidade: String?
-    var bairro: String
+    var bairro: String?
     var estado: String?
     var cep: String?
 //    @Relationship var projeto: Projeto?
@@ -71,7 +71,7 @@ class EnderecoProjeto {
         numero: String? = nil,
         complemento: String? = nil,
         cidade: String? = "Fortaleza",
-        bairro: String,
+        bairro: String? = nil,
         estado: String? = "CE",
         cep: String? = nil,
 //        projeto: Projeto? = nil
