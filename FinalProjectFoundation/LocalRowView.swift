@@ -54,9 +54,7 @@ struct LocalRowView: View {
             
             Spacer(minLength: 2)
             
-            Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(.gray.opacity(0.4))
+            
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(15)
