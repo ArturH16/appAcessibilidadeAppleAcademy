@@ -11,6 +11,7 @@ import SwiftDataSQLite
 @SQLiteTable("projetos")
 @Model
 class Projeto: Identifiable {
+    @SQLiteColumn("idProjetos")
     var id: Int
     var nomeProjeto: String
     var recursos: String?
@@ -54,9 +55,10 @@ class Projeto: Identifiable {
     }
 
 }
-//@SQLiteTable("enderecosProjetos")
+@SQLiteTable("enderecosProjetos")
 @Model
 class EnderecoProjeto {
+    @SQLiteColumn("idEnderecosProjetos")
     var id: Int
     var logradouro: String
     var numero: String?
@@ -65,7 +67,7 @@ class EnderecoProjeto {
     var bairro: String?
     var estado: String?
     var cep: String?
-//    @Relationship var projeto: Projeto?
+    @Relationship var projeto: Projeto?
     
     
     init(
@@ -77,7 +79,7 @@ class EnderecoProjeto {
         bairro: String? = nil,
         estado: String? = "CE",
         cep: String? = nil,
-//        projeto: Projeto? = nil
+        projeto: Projeto? = nil
     ) {
         self.id = id
         self.logradouro = logradouro
@@ -87,7 +89,7 @@ class EnderecoProjeto {
         self.bairro = bairro
         self.estado = estado
         self.cep = cep
-//        self.projeto = projeto
+        self.projeto = projeto
     }
 }
 

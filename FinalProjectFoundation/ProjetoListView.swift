@@ -37,6 +37,7 @@ struct ProjetoListView: View {
             .listRowSpacing(0)
             .navigationTitle("Projetos")
             .navigationSubtitle("Os mais populares do momento")
+            .toolbar(.hidden, for: .tabBar)
             .toolbarTitleDisplayMode(.large)
             
             }
@@ -49,6 +50,9 @@ struct ProjetoListView: View {
 
 
 #Preview {
-    ProjetoListView()
+    ProjetoListView().modelContainer( // ✅
+        for: [Projeto.self, Local.self,EnderecoProjeto.self,Endereco_local.self],
+        inMemory: true,
+        sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!)
       
 }
