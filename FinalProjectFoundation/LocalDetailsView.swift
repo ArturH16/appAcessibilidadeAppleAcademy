@@ -37,7 +37,6 @@ struct LocalDetailsView: View {
                   
                   VStack(alignment: .leading, spacing: 14) {
                       
-                      // Título, Avaliação e Coração
                       HStack(alignment: .top) {
                           VStack(alignment: .leading, spacing: 4) {
                               Text(local.nomeLocal)
@@ -51,7 +50,7 @@ struct LocalDetailsView: View {
                       }
                       
                       // Endereço
-                      Text(local.endereco.logradouro)
+                      Text(local.endereco.logradouro + " - " + local.endereco.cep)
                           .font(.caption)
                           .foregroundColor(.secondary)
                       

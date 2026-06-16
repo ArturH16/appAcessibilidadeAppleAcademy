@@ -53,7 +53,7 @@ struct ProjetoDetailView: View {
                         }
                         
                         // Endereço
-                        Text(projeto.endereco.logradouro)
+                        Text(projeto.endereco.logradouro + " - ")
                             .font(.caption)
                             .foregroundColor(.secondary)
                         
