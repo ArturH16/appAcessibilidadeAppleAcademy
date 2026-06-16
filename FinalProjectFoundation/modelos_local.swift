@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import SwiftDataSQLite
 
-//@SQLiteTable("locais")
+@SQLiteTable("locais")
 @Model
 class Local: Identifiable {
     @SQLiteColumn("idLocal")
@@ -21,6 +21,7 @@ class Local: Identifiable {
     var bairroLocal: String
     var horarioFuncionamento: String
     var diasFuncionamento: String
+    @SQLiteColumn("idEnderecoLocal")
     @Relationship var endereco: Endereco_local
     
     init(
@@ -50,7 +51,7 @@ class Local: Identifiable {
 }
 
 
-//@SQLiteTable("enderecosLocais")
+@SQLiteTable("enderecosLocais")
 @Model
 class Endereco_local: Identifiable {
     @SQLiteColumn("idEnderecos")
@@ -62,7 +63,7 @@ class Endereco_local: Identifiable {
     var cidade: String
     var estado: String
     var cep: String
-    @Relationship(inverse:\ Local.endereco) var local: Local?
+    //@Relationship(inverse:\ Local.endereco) var local: Local?
     
     
     init(

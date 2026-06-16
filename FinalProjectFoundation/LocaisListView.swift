@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import SwiftDataSQLite
 
 struct LocaisListView: View {
     @Query var locais: [Local]
@@ -14,6 +15,9 @@ struct LocaisListView: View {
     var body: some View {
         NavigationStack {
             List {
+                Text("Nenhum Local Encontrado!")
+                    .font(.system(size: 20,weight: .semibold))
+                    .padding()
                 // for elemento in musics {}
                 ForEach(locais) { Local in
                     LocalRowView(local: Local)
@@ -29,9 +33,18 @@ struct LocaisListView: View {
             .toolbarTitleDisplayMode(.large)
             .toolbar(.hidden, for: .tabBar)
         }
+        
     }
 }
     
 #Preview {
-    LocaisListView()
+    LocaisListView().modelContainer(
+        // ✅
+        for: [
+            Endereco_local.self,
+            Local.self
+        ],
+        inMemory: true,
+        sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
+    )
 }

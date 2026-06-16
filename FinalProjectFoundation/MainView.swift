@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import SwiftData
+import SwiftDataSQLite
+
 
 struct MainView: View {
     @State private var abaSelecionada = 1
@@ -15,7 +18,6 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             
-            // 1. AS TELAS DE TRÁS
             TabView(selection: $abaSelecionada) {
                 LocaisListView()
                     .tag(0)
@@ -29,7 +31,7 @@ struct MainView: View {
                 }
             }
             
-            // 2. A SUA BARRA FLUTUANTE CUSTOMIZADA
+            // BARRA FLUTUANTE CUSTOMIZADA
             HStack(spacing: 0) {
                 if !pesquisaExpandida {
                     // Estado Normal: Mostra os 3 botões lado a lado uniformemente
