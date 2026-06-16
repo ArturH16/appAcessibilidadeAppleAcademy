@@ -37,6 +37,7 @@ struct ProjetoListView: View {
             .listRowSpacing(0)
             .navigationTitle("Projetos")
             .navigationSubtitle("Os mais populares do momento")
+            .toolbar(.hidden, for: .tabBar)
             .toolbarTitleDisplayMode(.large)
             
             }

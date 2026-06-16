@@ -12,7 +12,8 @@ import SwiftDataSQLite
 //@SQLiteTable("locais")
 @Model
 class Local: Identifiable {
-    var idLocal: Int? = nil
+    @SQLiteColumn("idLocal")
+    var id: Int? = nil
     var nomeLocal: String
     var imagemPrincipal: Data
     var recursos: [String]
@@ -24,7 +25,7 @@ class Local: Identifiable {
     @Relationship var endereco: Endereco_local?
     
     init(
-        idLocal: Int? = nil,
+        id: Int? = nil,
         nomeLocal: String,
         imagemPrincipal: Data,
         recursos: [String],
@@ -36,7 +37,7 @@ class Local: Identifiable {
         
         
     ){
-        self.idLocal = idLocal
+        self.id = id
         self.nomeLocal = nomeLocal
         self.recursos = recursos
         self.isFavorite = isFavorite
