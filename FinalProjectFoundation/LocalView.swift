@@ -43,12 +43,12 @@ struct LocalView: View {
 }
 
 #Preview {
-    LocalView()
+    /*LocalView()
         .modelContainer( // ✅
             for: [Local.self],
             inMemory: true,
             sqliteDatabasePath: Bundle.main.path(forResource: "database", ofType: "sqlite")!
-        )
+        )*/
 }
 
 
