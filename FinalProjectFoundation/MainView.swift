@@ -17,7 +17,7 @@ struct MainView: View {
             
             // 1. AS TELAS DE TRÁS
             TabView(selection: $abaSelecionada) {
-                LocaisPlaceholderView()
+                LocaisListView()
                     .tag(0)
                 
                 // Exibe a tela de pesquisa real quando a aba de busca estiver ativa por trás

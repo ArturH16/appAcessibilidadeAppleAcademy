@@ -16,7 +16,7 @@ struct LocaisListView: View {
             List {
                 // for elemento in musics {}
                 ForEach(locais) { Local in
-                    CardLocalView(local: Local)
+                    LocalRowView(local: Local)
                         .listRowSeparator(.hidden)
                 }
                
