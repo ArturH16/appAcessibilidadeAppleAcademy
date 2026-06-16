@@ -9,15 +9,14 @@ import Foundation
 import SwiftData
 import SwiftDataSQLite
 
-@SQLiteTable("locais")
+//@SQLiteTable("locais")
 @Model
 class Local: Identifiable {
     @SQLiteColumn("idLocal")
     var id: Int? = nil
     var nomeLocal: String
     var imagemPrincipal: Data
-    var recursos: [String]
-    var isFavorite: Int
+    var recursos: String
     var descricaoLocal: String
     var bairroLocal: String
     var horarioFuncionamento: String
@@ -28,8 +27,7 @@ class Local: Identifiable {
         id: Int? = nil,
         nomeLocal: String,
         imagemPrincipal: Data,
-        recursos: [String],
-        isFavorite: Int,
+        recursos: String,
         descricaoLocal: String,
         bairroLocal: String,
         horarioFuncionamento: String,
@@ -40,7 +38,6 @@ class Local: Identifiable {
         self.id = id
         self.nomeLocal = nomeLocal
         self.recursos = recursos
-        self.isFavorite = isFavorite
         self.descricaoLocal = descricaoLocal
         self.bairroLocal = bairroLocal
         self.horarioFuncionamento = horarioFuncionamento
@@ -51,30 +48,30 @@ class Local: Identifiable {
 }
 
 
-@SQLiteTable("enderecosLocais")
+//@SQLiteTable("enderecosLocais")
 @Model
 class Endereco_local: Identifiable {
     @SQLiteColumn("idEnderecos")
     var id: Int?
-    var logradouro: String?
-    var numero: String?
+    var logradouro: String
+    var numero: String
     var complemento: String
-    var bairro: String?
-    var cidade: String?
-    var estado: String?
-    var cep: String?
+    var bairro: String
+    var cidade: String
+    var estado: String
+    var cep: String
     @Relationship(inverse:\ Local.endereco) var local: Local?
     
     
     init(
             id: Int? = nil,
-            logradouro: String = "",
-            numero: String = "",
-            complemento: String = "",
-            bairro: String = "",
-            cidade: String = "",
-            estado: String = "",
-            cep: String = ""
+            logradouro: String,
+            numero: String,
+            complemento: String,
+            bairro: String,
+            cidade: String,
+            estado: String,
+            cep: String
         ) {
             self.id = id
             self.logradouro = logradouro

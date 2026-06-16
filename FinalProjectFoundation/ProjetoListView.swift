@@ -50,9 +50,10 @@ struct ProjetoListView: View {
 
 
 #Preview {
-    ProjetoListView().modelContainer( // ✅
-        for: [Projeto.self, Local.self,EnderecoProjeto.self,Endereco_local.self],
-        inMemory: true,
-        sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!)
+    ProjetoListView()
+        //.modelContainer( // ✅
+//        for: [Projeto.self, Local.self,EnderecoProjeto.self,Endereco_local.self],
+//        inMemory: true,
+//        sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!)
       
 }

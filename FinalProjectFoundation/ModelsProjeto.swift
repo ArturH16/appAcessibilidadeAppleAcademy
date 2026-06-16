@@ -8,7 +8,7 @@ import Foundation
 import SwiftData
 import SwiftDataSQLite
 
-@SQLiteTable("projetos")
+//@SQLiteTable("projetos")
 @Model
 class Projeto: Identifiable {
     @SQLiteColumn("idProjetos")
@@ -55,7 +55,7 @@ class Projeto: Identifiable {
     }
 
 }
-@SQLiteTable("enderecosProjetos")
+//@SQLiteTable("enderecosProjetos")
 @Model
 class EnderecoProjeto {
     @SQLiteColumn("idEnderecosProjetos")
