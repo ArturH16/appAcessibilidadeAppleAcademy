@@ -123,27 +123,6 @@ struct MainView: View {
     }
 }
 
-// MARK: - Views de Suporte Modificadas (Forçam a TabBar nativa a sumir)
-
-struct LocaisPlaceholderView: View {
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                Image(systemName: "diamond.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(.blue)
-                Text("Tela de Locais")
-                    .font(.title2)
-                    .bold()
-                Text("Aqui ficarão os locais fixos.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            .navigationTitle("Locais")
-            .toolbar(.hidden, for: .tabBar) // <-- Remove a barra preta nesta tela
-        }
-    }
-}
 
 
 // Nova view para exibir os resultados da busca quando expandido

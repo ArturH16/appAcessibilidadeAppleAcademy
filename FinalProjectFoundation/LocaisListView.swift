@@ -24,9 +24,10 @@ struct LocaisListView: View {
             }
             .listStyle(.plain)
             .listRowSpacing(0)
-            .navigationTitle("Músicas")
-            .navigationSubtitle("A Vibe do Momento")
+            .navigationTitle("Locais")
+            .navigationSubtitle("Os mais procurados do momento!")
             .toolbarTitleDisplayMode(.large)
+            .toolbar(.hidden, for: .tabBar)
         }
     }
 }
