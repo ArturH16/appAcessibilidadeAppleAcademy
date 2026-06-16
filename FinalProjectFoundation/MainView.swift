@@ -150,5 +150,15 @@ struct ResultadosPesquisaView: View {
 
 
 #Preview {
-    MainView()
+    MainView().modelContainer(
+            // ✅
+            for: [
+                EnderecoProjeto.self,
+                Projeto.self,
+                Endereco_local.self,
+                Local.self
+            ],
+            inMemory: true,
+            sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
+        )
 }

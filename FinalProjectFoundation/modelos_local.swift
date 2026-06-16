@@ -58,7 +58,7 @@ class Endereco_local: Identifiable {
     var id: Int?
     var logradouro: String
     var numero: String
-    var complemento: String
+    var complemento: String?
     var bairro: String
     var cidade: String
     var estado: String
@@ -70,7 +70,7 @@ class Endereco_local: Identifiable {
             id: Int? = nil,
             logradouro: String,
             numero: String,
-            complemento: String,
+            complemento: String?,
             bairro: String,
             cidade: String,
             estado: String,

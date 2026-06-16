@@ -15,17 +15,18 @@ struct LocaisListView: View {
     var body: some View {
         NavigationStack {
             List {
-                Text("Nenhum Local Encontrado!")
-                    .font(.system(size: 20,weight: .semibold))
-                    .padding()
-                // for elemento in musics {}
-                ForEach(locais) { Local in
-                    LocalRowView(local: Local)
-                        .listRowSeparator(.hidden)
+                if locais.isEmpty {
+                    Text("Nenhum Local Encontrado!")
+                        .font(.system(size: 20, weight: .semibold))
+                        .padding()
+                } else {
+                    ForEach(locais) { local in
+                        LocalRowView(local: local)
+                            .listRowSeparator(.hidden)
+                    }
                 }
-               
-               
             }
+
             .listStyle(.plain)
             .listRowSpacing(0)
             .navigationTitle("Locais")

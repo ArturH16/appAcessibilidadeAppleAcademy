@@ -20,19 +20,12 @@ struct FinalProjectFoundationApp: App {
                     for: [
                         EnderecoProjeto.self,
                         Projeto.self,
+                        Endereco_local.self,
+                        Local.self
                     ],
                     inMemory: true,
                     sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
                 )
-            LocaisListView().modelContainer(
-                // ✅
-                for: [
-                    Endereco_local.self,
-                    Local.self
-                ],
-                inMemory: true,
-                sqliteDatabasePath: Bundle.main.path(forResource: "db", ofType: "sqlite")!
-            )
 
         }
     }
