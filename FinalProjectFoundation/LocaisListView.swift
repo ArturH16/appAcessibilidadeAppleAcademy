@@ -21,8 +21,10 @@ struct LocaisListView: View {
                         .padding()
                 } else {
                     ForEach(locais) { local in
-                        LocalRowView(local: local)
-                            .listRowSeparator(.hidden)
+                        NavigationLink(destination:LocalDetailsView(local: local))  {
+                            LocalRowView(local: local)
+                        }
+                        //LocalRowView(local: local)
                     }
                 }
             }
