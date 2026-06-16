@@ -41,7 +41,7 @@ struct MainView: View {
                             withAnimation(.easeInOut(duration: 0.2)) { abaSelecionada = 0 }
                         }) {
                             VStack(spacing: 4) {
-                                Image(systemName: "diamond.fill")
+                                Image(systemName: "map")
                                     .font(.system(size: 18))
                                 Text("Locais")
                                     .font(.system(size: 10, weight: .medium))
@@ -55,7 +55,7 @@ struct MainView: View {
                             withAnimation(.easeInOut(duration: 0.2)) { abaSelecionada = 1 }
                         }) {
                             VStack(spacing: 4) {
-                                Image(systemName: "circle.fill")
+                                Image(systemName: "person.2")
                                     .font(.system(size: 18))
                                 Text("Projetos")
                                     .font(.system(size: 10, weight: .medium))
