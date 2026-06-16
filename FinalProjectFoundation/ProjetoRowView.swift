@@ -65,14 +65,14 @@ struct ProjetoRow: View {
 }
 
 #Preview {
-    let enderecoTeste = EnderecoProjeto(
-        id: 1,
-        logradouro: "Av Beira Mar",
-        bairro: "Praia de Iracema"
-    )
-    
-    let imagemData = UIImage(resource: .praiaAcessivel).pngData()!
-    
+//    let enderecoTeste = EnderecoProjeto(
+//        id: 1,
+//        logradouro: "Av Beira Mar",
+//        bairro: "Praia de Iracema"
+//    )
+//    
+//    let imagemData = UIImage(resource: .praiaAcessivel).pngData()!
+//    
 //    let projetoTeste = Projeto(
 //        id: 1,
 //        nomeProjeto: "Praia Acessível",

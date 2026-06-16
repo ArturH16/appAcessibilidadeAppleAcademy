@@ -24,9 +24,11 @@ struct ProjetoListView: View {
                         
                     }
                     else {
-                                ForEach(projetos) { projeto in
-                                    ProjetoRow(projeto: projeto )
-                                }
+                        ForEach(projetos) { projeto in
+                            NavigationLink(destination:ProjetoDetailView(projeto: projeto))  {
+                                ProjetoRow(projeto: projeto)
+                            }                       }
+
                             
                        
                     }
@@ -34,7 +36,7 @@ struct ProjetoListView: View {
             .listStyle(.plain)
             .listRowSpacing(0)
             .navigationTitle("Projetos")
-            .navigationSubtitle("Os mais populares até o momento")
+            .navigationSubtitle("Os mais populares do momento")
             .toolbarTitleDisplayMode(.large)
             
             }

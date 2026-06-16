@@ -13,28 +13,30 @@ import SwiftDataSQLite
 class Projeto: Identifiable {
     var id: Int
     var nomeProjeto: String
-    var recursos: [String]
+    var recursos: String?
     var dataInicio: String
     var dataFim: String?
     var imagemPrincipalProjeto: Data
     var distancia: Int?
     var colaboradores: String?
     var diasFuncionamento: String
-    var horarioFuncionamento: [String]
+    var horarioFuncionamento: String
+    var informacoesGerais: String?
     @SQLiteColumn("idEndereco")
     @Relationship var endereco: EnderecoProjeto
     
     init(
         id: Int,
         nomeProjeto: String,
-        recursos: [String] = [],
+        recursos: String? = nil,
         dataInicio: String = "",
         dataFim: String? = nil,
         imagemPrincipalProjeto: Data,
         distancia: Int? = nil,
         colaboradores: String? = nil,
         diasFuncionamento: String = "",
-        horarioFuncionamento: [String] = [],
+        horarioFuncionamento: String = "",
+        informacoesGerais: String? = nil,
         endereco: EnderecoProjeto
     ) {
         self.id = id
@@ -48,10 +50,11 @@ class Projeto: Identifiable {
         self.diasFuncionamento = diasFuncionamento
         self.horarioFuncionamento = horarioFuncionamento
         self.endereco = endereco
+        self.informacoesGerais = informacoesGerais
     }
 
 }
-@SQLiteTable("enderecosProjetos")
+//@SQLiteTable("enderecosProjetos")
 @Model
 class EnderecoProjeto {
     var id: Int
@@ -59,7 +62,7 @@ class EnderecoProjeto {
     var numero: String?
     var complemento: String?
     var cidade: String?
-    var bairro: String
+    var bairro: String?
     var estado: String?
     var cep: String?
 //    @Relationship var projeto: Projeto?
@@ -71,7 +74,7 @@ class EnderecoProjeto {
         numero: String? = nil,
         complemento: String? = nil,
         cidade: String? = "Fortaleza",
-        bairro: String,
+        bairro: String? = nil,
         estado: String? = "CE",
         cep: String? = nil,
 //        projeto: Projeto? = nil
