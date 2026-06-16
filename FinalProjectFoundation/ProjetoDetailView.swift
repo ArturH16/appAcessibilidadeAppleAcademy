@@ -14,8 +14,6 @@ struct ProjetoDetailView: View {
     var body: some View {
           ScrollView {
               VStack(alignment: .leading, spacing: 16) {
-                  
-                  // MARK: - 1. Imagem de Topo com Botão Voltar
                   ZStack(alignment: .topLeading) {
                       Image(.praiaAcessivel)
                           .resizable()
@@ -65,7 +63,7 @@ struct ProjetoDetailView: View {
                               .font(.headline)
                               .bold()
                           
-                          Text("O Espaço Girassol é uma rede municipal de Fortaleza dedicada ao acolhimento, diagnóstico e terapias para crianças e adolescentes (3 a 17 anos) com neurodivergências e transtornos do neurodesenvolvimento, como o Transtorno do Espectro Autista (TEA).")
+                          Text(projeto.informacoesGerais)
                               .font(.body)
                               .foregroundColor(.primary)
                               .lineSpacing(4)
@@ -88,7 +86,7 @@ struct ProjetoDetailView: View {
                               .font(.headline)
                               .bold()
                           
-                          Text("Seg a Sab - 08:00 - 20:00")
+                          Text(projeto.diasFuncionamento + projeto.horarioFuncionamento)
                               .font(.body)
                               .foregroundColor(.primary)
                       }
@@ -107,15 +105,17 @@ struct ProjetoDetailView: View {
       let projetoFalso = Projeto(
             id: 1,
             nomeProjeto: "Espaço Girassol",
-            recursos: ["Atendimento familiar", "Diagnóstico", "Acompanhamento para TEA"],
+            recursos: "Atendimento familiar, diagnóstico e acompanhamento para TEA e síndrome de Down.",
             dataInicio: "2026",
             dataFim: nil,
             imagemPrincipalProjeto: Data(), // Passa um dado binário vazio para testes
             distancia: 5,
             colaboradores: nil,
             diasFuncionamento: "Seg a Sab",
-            horarioFuncionamento: ["08:00", "20:00"],
-            endereco: enderecoFalso)
+            horarioFuncionamento: " - 08:00 : 20:00",
+            informacoesGerais: "O Espaço Girassol é uma rede municipal de Fortaleza dedicada ao acolhimento, diagnóstico e terapias para crianças e adolescentes (3 a 17 anos) com neurodivergências e transtornos do neurodesenvolvimento, como o Transtorno do Espectro Autista (TEA).",
+            endereco: enderecoFalso
+           )
       ProjetoDetailView(projeto: projetoFalso)
   }
 
