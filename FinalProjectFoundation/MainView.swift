@@ -4,11 +4,9 @@
 //
 //  Created by Beatriz Leonel on 28/05/26.
 //
-
 import SwiftUI
 import SwiftData
 import SwiftDataSQLite
-
 
 struct MainView: View {
     @State private var abaSelecionada = 0
@@ -18,17 +16,24 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             
+            // 1. ESTRUTURA DO TABVIEW FIXA
             TabView(selection: $abaSelecionada) {
                 LocaisListView()
                     .tag(0)
                 
-                // Exibe a tela de pesquisa real quando a aba de busca estiver ativa por trás
-                if abaSelecionada == 2 {
-                    ResultadosPesquisaView(texto: $textoPesquisa)
-                } else {
-                    ProjetoListView()
-                        .tag(1)
-                }
+                ProjetoListView()
+                    .tag(1)
+                
+                Color.clear
+                    .tag(2)
+            }
+            
+            // 2. SOBREPOSIÇÃO DA TELA DE BUSCA FLUTUANTE
+            if pesquisaExpandida {
+                ResultadosPesquisaView(texto: $textoPesquisa)
+                    .padding(.bottom, 80) // Dá espaço para a barra de botões flutuante
+                    .background(Color(.systemGroupedBackground))
+                    .transition(.opacity)
             }
             
             // BARRA FLUTUANTE CUSTOMIZADA
@@ -64,7 +69,7 @@ struct MainView: View {
                             .foregroundColor(abaSelecionada == 1 ? .blue : .secondary)
                         }
                         
-                        // Botão 3: Pesquisa (Lupa) -> GERA A EXPANSÃO AO CLICAR
+                        // Botão 3: Pesquisa (Lupa)
                         Button(action: {
                             withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
                                 abaSelecionada = 2
@@ -91,14 +96,15 @@ struct MainView: View {
                         
                         TextField("Search", text: $textoPesquisa)
                             .foregroundColor(.primary)
+                            .autocorrectionDisabled()
                         
-                        // Botão Fechar (Volta ao estado normal dos 3 botões)
+                        // Botão Fechar
                         Button(action: {
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
                                 pesquisaExpandida = false
                                 textoPesquisa = ""
-                                abaSelecionada = 1 // Retorna para a aba principal de Projetos
+                                abaSelecionada = 1 // Retorna para a aba de Projetos
                             }
                         }) {
                             Image(systemName: "xmark.circle.fill")
@@ -116,7 +122,7 @@ struct MainView: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
-            .background(Color.white)
+            .background(Color(.systemBackground))
             .clipShape(Capsule())
             .shadow(color: Color.black.opacity(0.12), radius: 8, x: 0, y: 4)
             .padding(.horizontal, 24)
@@ -125,28 +131,138 @@ struct MainView: View {
     }
 }
 
-
-
-// Nova view para exibir os resultados da busca quando expandido
 struct ResultadosPesquisaView: View {
     @Binding var texto: String
     
+    @Query var todosProjetos: [Projeto]
+    @Query var todosLocais: [Local]
+    
+    var projetosFiltrados: [Projeto] {
+        if texto.isEmpty { return [] }
+        return todosProjetos.filter { projeto in
+            (projeto.recursos ?? "").localizedCaseInsensitiveContains(texto)
+        }
+    }
+    
+    var locaisFiltrados: [Local] {
+        if texto.isEmpty { return [] }
+        return todosLocais.filter { local in
+            local.recursos.localizedCaseInsensitiveContains(texto)
+        }
+    }
+    
     var body: some View {
         NavigationStack {
-            VStack {
+            Group {
                 if texto.isEmpty {
-                    Text("O que você deseja procurar?")
-                        .foregroundColor(.secondary)
+                    ContentUnavailableView(
+                        "O que você deseja procurar?",
+                        systemImage: "magnifyingglass",
+                        description: Text("Digite palavras-chave para encontrar recursos de locais e projetos.")
+                    )
+                } else if projetosFiltrados.isEmpty && locaisFiltrados.isEmpty {
+                    ContentUnavailableView.search(text: texto)
                 } else {
-                    Text("Buscando por: \(texto)")
-                        .bold()
+                    List {
+                        // --- SEÇÃO DE PROJETOS ---
+                        if !projetosFiltrados.isEmpty {
+                            Section("Projetos") {
+                                ForEach(projetosFiltrados) { projeto in
+                                    NavigationLink(destination: ProjetoDetailView(projeto: projeto)) {
+                                        HStack(spacing: 16) {
+                                            // 1. Imagem Miniatura Arredondada à esquerda
+                                            if let uiImage = UIImage(data: projeto.imagemPrincipalProjeto) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: 95, height: 60)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                            } else {
+                                                Color.gray.opacity(0.2)
+                                                    .frame(width: 95, height: 60)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                                    .overlay(Image(systemName: "photo").foregroundColor(.secondary))
+                                            }
+                                            
+                                            // 2. Textos Centrais
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text(projeto.nomeProjeto)
+                                                    .font(.system(size: 16, weight: .bold))
+                                                    .foregroundColor(.primary)
+                                                    .lineLimit(1)
+                                                
+                                                Text("Aberto")
+                                                    .font(.system(size: 11, weight: .semibold))
+                                                    .foregroundColor(Color(red: 0.18, green: 0.75, blue: 0.45))
+                                                    .padding(.horizontal, 8)
+                                                    .padding(.vertical, 3)
+                                                    .background(Color(red: 0.18, green: 0.75, blue: 0.45).opacity(0.12))
+                                                    .clipShape(Capsule())
+                                            }
+                                        }
+                                        .padding(.vertical, 4)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // --- SEÇÃO DE LOCAIS ---
+                        if !locaisFiltrados.isEmpty {
+                            Section("Locais") {
+                                ForEach(locaisFiltrados) { local in
+                                    NavigationLink(destination: LocalDetailsView(local: local)) {
+                                        HStack(spacing: 16) {
+                                            // 1. Imagem do Local
+                    
+                                            if let uiImage = UIImage(data: local.imagemPrincipal) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: 95, height: 60)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                            } else {
+                                                // Mantém o placeholder cinza caso dê erro ao converter os bytes da foto
+                                                Color.gray.opacity(0.2)
+                                                    .frame(width: 95, height: 60)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                                    .overlay(Image(systemName: "map").foregroundColor(.secondary))
+                                            }
+
+                                            
+                                            // 2. Textos do Local
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                // Exibe o nome real (ex: local.nomeLocal)
+                                                Text(local.nomeLocal)
+                                                    .font(.system(size: 16, weight: .bold))
+                                                    .foregroundColor(.primary)
+                                                    .lineLimit(1)
+                                                
+                                                Text("Aberto")
+                                                    .font(.system(size: 11, weight: .semibold))
+                                                    .foregroundColor(Color(red: 0.18, green: 0.75, blue: 0.45))
+                                                    .padding(.horizontal, 8)
+                                                    .padding(.vertical, 3)
+                                                    .background(Color(red: 0.18, green: 0.75, blue: 0.45).opacity(0.12))
+                                                    .clipShape(Capsule())
+                                            }
+                                        }
+                                        .padding(.vertical, 4)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Buscar")
-            .toolbar(.hidden, for: .tabBar) // <-- Remove a barra preta nesta tela
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
+
+
+
 
 
 #Preview {
