@@ -57,7 +57,7 @@ class Endereco_local: Identifiable {
     @SQLiteColumn("idEnderecos")
     var id: Int?
     var logradouro: String
-    var numero: String
+    var numero: String?
     var complemento: String?
     var bairro: String
     var cidade: String
@@ -69,7 +69,7 @@ class Endereco_local: Identifiable {
     init(
             id: Int? = nil,
             logradouro: String,
-            numero: String,
+            numero: String?,
             complemento: String?,
             bairro: String,
             cidade: String,

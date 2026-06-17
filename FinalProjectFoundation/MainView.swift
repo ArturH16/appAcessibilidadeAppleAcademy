@@ -11,7 +11,7 @@ import SwiftDataSQLite
 
 
 struct MainView: View {
-    @State private var abaSelecionada = 1
+    @State private var abaSelecionada = 0
     @State private var pesquisaExpandida = false
     @State private var textoPesquisa = ""
     
