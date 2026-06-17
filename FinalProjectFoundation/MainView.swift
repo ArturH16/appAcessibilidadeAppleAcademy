@@ -163,7 +163,9 @@ struct ResultadosPesquisaView: View {
                         description: Text("Digite palavras-chave para encontrar recursos de locais e projetos.")
                     )
                 } else if projetosFiltrados.isEmpty && locaisFiltrados.isEmpty {
-                    ContentUnavailableView.search(text: texto)
+                    ContentUnavailableView("Nenhum resultado para \"\(texto)\"",
+                                                  systemImage: "magnifyingglass",
+                                                  description: Text("Verifique a ortografia ou tente uma nova busca."))
                 } else {
                     List {
                         // --- SEÇÃO DE PROJETOS ---
