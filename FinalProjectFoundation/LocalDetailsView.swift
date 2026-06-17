@@ -85,7 +85,7 @@ struct LocalDetailsView: View {
                               .font(.headline)
                               .bold()
                           
-                          Text(local.diasFuncionamento + local.horarioFuncionamento)
+                          Text(local.diasFuncionamento + " - " + local.horarioFuncionamento)
                               .font(.body)
                               .foregroundColor(.primary)
                       }
