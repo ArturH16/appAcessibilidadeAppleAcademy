@@ -88,7 +88,7 @@ struct ProjetoDetailView: View {
                                 .font(.headline)
                                 .bold()
                             
-                            Text(projeto.diasFuncionamento + projeto.horarioFuncionamento)
+                            Text(projeto.diasFuncionamento + " - " +  projeto.horarioFuncionamento)
                                 .font(.body)
                                 .foregroundColor(.primary)
                         }
