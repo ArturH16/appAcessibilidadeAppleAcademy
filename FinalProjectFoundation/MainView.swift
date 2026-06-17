@@ -12,6 +12,7 @@ struct MainView: View {
     @State private var abaSelecionada = 0
     @State private var pesquisaExpandida = false
     @State private var textoPesquisa = ""
+    @State private var abaAnterior = 0
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -72,6 +73,7 @@ struct MainView: View {
                         // Botão 3: Pesquisa (Lupa)
                         Button(action: {
                             withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
+                                abaAnterior = abaSelecionada
                                 abaSelecionada = 2
                                 pesquisaExpandida = true
                             }
@@ -104,7 +106,7 @@ struct MainView: View {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
                                 pesquisaExpandida = false
                                 textoPesquisa = ""
-                                abaSelecionada = 1 // Retorna para a aba de Projetos
+                                abaSelecionada = abaAnterior
                             }
                         }) {
                             Image(systemName: "xmark.circle.fill")
